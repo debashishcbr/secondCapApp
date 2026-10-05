@@ -1,0 +1,109 @@
+### for every new call
+
+### 1. get the service document
+http://localhost:4004/odata/v4/CatalogService
+Authorization: Basic varun:1234
+### 2. get the service metadata - skeleton of service
+http://localhost:4004/odata/v4/CatalogService/$metadata
+Authorization: Basic yamini:4321
+
+### 2. GET - fetch all employee records
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Authorization: Basic varun:1234
+
+### 3. $count GET employee count
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+
+### 4. single employee record by key
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet(ID='02BD2137-0890-1EEA-A6C2-BB55C197C7FB')
+
+### 5. pagination - $top & $skip  employee set
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$top=2&skip=2
+
+### 6. filter - simple employee set
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=bankName eq 'My Bank of San Francisco'
+
+### 7. filter - like operator  employee set
+http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=contains(nameFirst,'Su')
+
+
+### 8. get ALL  purchase order set
+http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet
+
+### 9. get ONE  purchase order by key
+http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet/02BD2137-0890-1EEA-A6C2-BB55C1979001
+
+### 10. get ONE  purchase order by key & items - lazy loading
+http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet/02BD2137-0890-1EEA-A6C2-BB55C1979001?$expand=Items
+
+### 11. get ALL  purchase order  & ALL items 
+http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet?$expand=Items
+
+### 12. filter - lamda function ( all || any )  purchase order set
+http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet?$expand=Items&$filter=Items/all(wa:wa/GROSS_AMOUNT gt 5000)
+
+### 13. POST - create employee data
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+Authorization: Basic yamini:4321
+
+{
+    "nameFirst": "Lionel",
+    "nameMiddle": null,
+    "nameLast": "Messi",
+    "nameInitials": null,
+    "sex": "M",
+    "language": "E",
+    "phoneNumber": "+1 224 374 529",
+    "email": "lionel.messi@gmail.com",
+    "loginName": "MESSIL",
+    "Currency_code": "EUR",
+    "salaryAmount": "0",
+    "accountNumber": "111222333",
+    "bankId": "510000655",
+    "bankName": "RBS",
+    "country": null
+}
+
+### 14. PATCH - update employee data
+PATCH  http://localhost:4004/odata/v4/CatalogService/EmployeeSet/0c8872ec-3916-4878-a241-d50aa50b2d44
+Content-Type: application/json
+
+{
+ "salaryAmount": "1000000.00"
+}
+
+### 15. DELETE - delete employee data
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/0c8872ec-3916-4878-a241-d50aa50b2d44
+
+
+
+
+### 16. CDS Service
+GET  http://localhost:4004/odata/v4/CDSService
+
+### 17. CDS Service - Product View
+GET  http://localhost:4004/odata/v4/CDSService/ProductSet
+
+### 18. CDS Service - Product View - single product
+GET  http://localhost:4004/odata/v4/CDSService/ProductSet/74867AD200E41EDBA5D8B06B26EB6052
+
+### 19. CDS Service - dependent data - lazy loading
+GET  http://localhost:4004/odata/v4/CDSService/ProductSet/74867AD200E41EDBA5D8B06B26EB6052?$expand=To_Items
+
+### 19. CDS Service - Partner Set dependent data - lazy loading
+GET  http://localhost:4004/odata/v4/CDSService/PartnerSet/74867AD200E41EDBA5D8B06885A56052
+
+
+### 20. action ~ boost purchase order by key
+POST http://localhost:4004/odata/v4/CatalogService/PurchaseOrderSet/02BD2137-0890-1EEA-A6C2-BB55C1979001/boost
+Content-Type: application/json
+
+{} 
+
+### 21. function ~ top3 most expensive purchase order by key
+GET http://localhost:4004/odata/v4/CatalogService/getMostExpOrders(top=1)
+
+
+ 

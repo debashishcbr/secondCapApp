@@ -1,0 +1,6 @@
+STATUS,text
+P,Pending
+A,Approved
+X,Rejected
+D,Delivered
+N,New

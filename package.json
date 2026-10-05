@@ -1,0 +1,61 @@
+{
+  "name": "yrcapapp",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.16.1",
+    "@cap-js/hana": "^3",
+    "@sap/cds": "^10",
+    "@sap/xssec": "^4"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^3",
+    "@sap/cds-dk": "^10",
+    "cds-plugin-ui5": "^0.17.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-r2manageorders": "cds watch --open revisiontwo.r2manageorders/index.html?sap-ui-xx-viewCache=false --livereload false"
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/r2manageorders"
+  ],
+  "cds": {
+    "requires": {
+      "auth": {
+        "[development]": {
+          "kind": "mocked",
+          "users": {
+            "varun": {
+              "password": "1234",
+              "roles": [
+                "Display"
+              ],
+              "attr": {
+                "Spiderman": "My Bank of London"
+              }
+            },
+            "yamini": {
+              "password": "4321",
+              "roles": [
+                "Edit"
+              ]
+            }
+          }
+        },
+        "[production]": {
+          "kind": "xsuaa"
+        }
+      },
+      "[production]": {
+        "auth": {
+          "kind": "xsuaa"
+        }
+      }
+    }
+  }
+}

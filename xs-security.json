@@ -1,0 +1,61 @@
+{
+ "xsappname": "yrcapapp",
+ "scopes": [
+  {
+   "name": "$XSAPPNAME.Display",
+   "description": "display"
+  },
+  {
+   "name": "$XSAPPNAME.Edit",
+   "description": "edit"
+  }
+ ],
+ "attributes": [
+  {
+   "name": "Country",
+   "description": "Country",
+   "valueType": "string"
+  },
+  {
+   "name": "Spiderman",
+   "description": "Spiderman",
+   "valueType": "string"
+  }
+ ],
+ "role-templates": [
+  {
+   "name": "Viewer",
+   "description": "View all employees data",
+   "default-role-name": "Viewer: Authorized to Read All employees",
+   "scope-references": [
+    "$XSAPPNAME.Display"
+   ],
+   "attribute-references": [
+    {
+     "name": "Spiderman"
+    }
+   ]
+  },
+  {
+   "name": "Editor",
+   "description": "Edit employee data",
+   "scope-references": [
+    "$XSAPPNAME.Edit"
+   ]
+  }
+ ],
+ "authorities": [
+  "$ACCEPT_GRANTED_AUTHORITIES"
+ ],
+ "oauth2-configuration": {
+  "token-validity": 900,
+  "redirect-uris": [
+   "https://*.cfapps.us10-001.hana.ondemand.com/login/callback"
+  ],
+  "credential-types": [
+   "binding-secret",
+   "x509"
+  ]
+ },
+ "xsenableasyncservice": "true"
+}

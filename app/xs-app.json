@@ -1,0 +1,20 @@
+{
+   "welcomeFile": "r2manageorders/webapp/index.html",
+   "authenticationMethod": "route",
+   "sessionTimeout": 15,
+   "routes":[
+                        {
+                            "source": "^/r2manageorders/webapp/(.*)$",
+                            "localDir": "r2manageorders/webapp/",
+                            "target": "$1",
+                            "authenticationType": "xsuaa",
+                            "csrfProtection": true
+                        },
+                        
+                        {
+                            "source": "^/(.*)$",
+                            "authenticationType": "xsuaa",
+                            "destination": "srv-api"
+                        }                                     
+   ]
+}
