@@ -10,7 +10,13 @@
                             "authenticationType": "xsuaa",
                             "csrfProtection": true
                         },
-                        
+                        {
+                            "source": "^/ponalytics/webapp/(.*)$",
+                            "localDir": "poanalytics/webapp/",
+                            "target": "$1",
+                            "authenticationType": "xsuaa",
+                            "csrfProtection": true
+                        },                                                
                         {
                             "source": "^/(.*)$",
                             "authenticationType": "xsuaa",

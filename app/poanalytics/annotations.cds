@@ -1,0 +1,1 @@
+using POAnalytics as service from '../../srv/POAnalytics';

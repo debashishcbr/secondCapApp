@@ -15,14 +15,16 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-r2manageorders": "cds watch --open revisiontwo.r2manageorders/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-r2manageorders": "cds watch --open revisiontwo.r2manageorders/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "watch-poanalytics": "cds watch --open twoanalytics.poanalytics/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "private": true,
   "workspaces": [
     "app/*"
   ],
   "sapux": [
-    "app/r2manageorders"
+    "app/r2manageorders",
+    "app/poanalytics"
   ],
   "cds": {
     "requires": {
