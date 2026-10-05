@@ -2,6 +2,8 @@
 // type pools - include program
 using { devc.common as common } from './common';
 using { cuid,Currency } from '@sap/cds/common';
+using { Attachments  } from '@cap-js/attachments';
+
 
 // unique name for project
 namespace devc.db;
@@ -120,6 +122,7 @@ context transaction {
             NOTE             : String(255) @title : '{i18n>note}';
             Items            : Association to many poitems on 
                                Items.PARENT_KEY = $self;
+            attachments       : Composition of many Attachments;                               
     }      
 
     entity poitems :common.Amount,cuid{
